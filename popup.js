@@ -6,6 +6,16 @@ $(function () {
   });
 
   $("#spendAmount").click(function () {
+    buttonClickHandler();
+  });
+
+  $("#amount").keypress(function (e) {
+    if (e.which === 13) {
+      buttonClickHandler();
+    }
+  });
+
+  function buttonClickHandler() {
     chrome.storage.sync.get(["total", "limit"], function (budget) {
       let newTotal = 0;
       if (budget.total) {
@@ -34,5 +44,5 @@ $(function () {
       $("#total").text(newTotal);
       $("#amount").val("");
     });
-  });
+  }
 });
